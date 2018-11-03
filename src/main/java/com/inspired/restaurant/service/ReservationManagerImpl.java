@@ -1,4 +1,4 @@
-package com.inspired.restaurant;
+package com.inspired.restaurant.service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,7 +15,6 @@ import com.inspired.restaurant.dao.ReservationDao;
 import com.inspired.restaurant.dao.TableDao;
 import com.inspired.restaurant.dto.Reservation;
 import com.inspired.restaurant.dto.Table;
-import com.inspired.restaurant.service.ReservationManager;
 
 @Service
 public class ReservationManagerImpl implements ReservationManager {
