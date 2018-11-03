@@ -47,6 +47,7 @@ public class ReservationManagerImpl implements ReservationManager {
 	final Reservation reservation = new Reservation();
 	reservation.setName(name);
 	reservation.setPartySize(partySize);
+	reservation.setTime(time);
 	reservation.setLocationPreference(tablePref);
 	reservation.setTable(table);
 	reservationDao.addReservation(reservation);
