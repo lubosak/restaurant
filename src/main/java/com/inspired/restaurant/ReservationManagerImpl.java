@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,36 +78,13 @@ public class ReservationManagerImpl implements ReservationManager {
 	to.setTime(time);
 	to.add(Calendar.MINUTE, 90);
 
-	final Map<Date, List<Reservation>> reservationMap = reservationDao.reservationsByDate(from.getTime(),
-		to.getTime());
+	final List<Reservation> reservations = reservationDao.loadReservations(from.getTime(), to.getTime());
 
 	final Set<Table> occupiedTables = new HashSet<Table>();
-	for (List<Reservation> reservations : reservationMap.values()) {
-	    for (Reservation reservation : reservations) {
-		occupiedTables.add(reservation.getTable());
-	    }
+	for (Reservation reservation : reservations) {
+	    occupiedTables.add(reservation.getTable());
 	}
 	return occupiedTables;
-    }
-
-    private boolean isTableOccupied(Table table, Date time) {
-	final Calendar from = Calendar.getInstance();
-	from.setTime(time);
-	from.add(Calendar.MINUTE, -90);
-	final Calendar to = Calendar.getInstance();
-	to.setTime(time);
-	to.add(Calendar.MINUTE, 90);
-	final Map<Date, List<Reservation>> reservationMap = 
-		reservationDao.reservationsByDate(from.getTime(), to.getTime());
-
-	for (List<Reservation> reservations : reservationMap.values()) {
-	    for (Reservation reservation : reservations) {
-		if (table.equals(reservation.getTable())) {
-		    return true;
-		}
-	    }
-	}
-	return false;
     }
 
     private List<Date> getReservationTimeSlots(Date from, Date to) {

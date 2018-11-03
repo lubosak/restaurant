@@ -7,8 +7,8 @@ import com.inspired.restaurant.constant.TableLocationEnu;
 public class Reservation {
 
     private String name;
+    private Date time;
     private int partySize;
-    private Date reservationTime;
     private Table table;
     private TableLocationEnu locationPreference;
 
@@ -20,20 +20,20 @@ public class Reservation {
 	this.name = name;
     }
 
+    public Date getTime() {
+	return time;
+    }
+
+    public void setTime(Date time) {
+	this.time = time;
+    }
+
     public int getPartySize() {
 	return partySize;
     }
 
     public void setPartySize(int partySize) {
 	this.partySize = partySize;
-    }
-
-    public Date getReservationTime() {
-	return reservationTime;
-    }
-
-    public void setReservationTime(Date reservationTime) {
-	this.reservationTime = reservationTime;
     }
 
     public Table getTable() {
