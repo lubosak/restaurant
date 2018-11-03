@@ -2,6 +2,7 @@ package com.inspired.restaurant.dao;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -43,6 +44,19 @@ public class ReservationDaoInMemoryImpl implements ReservationDao {
 	    }
 	}
 	return matchingList;
+    }
+
+    @Override
+    public void cancelReservation(Reservation toCancel) {
+	final Iterator<Reservation> iter = reservations.iterator();
+	boolean found = false;
+	while (iter.hasNext() && !found) {
+	    final Reservation reservation = iter.next();
+	    if (reservation.equals(toCancel)) {
+		iter.remove();
+		found = true;
+	    }
+	}
     }
 
 }

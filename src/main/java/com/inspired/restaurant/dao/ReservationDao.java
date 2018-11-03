@@ -12,4 +12,6 @@ public interface ReservationDao {
     public List<Reservation> loadReservations(String customerName);
 
     public List<Reservation> loadReservations(Date from, Date to);
+
+    public void cancelReservation(Reservation reservation);
 }
