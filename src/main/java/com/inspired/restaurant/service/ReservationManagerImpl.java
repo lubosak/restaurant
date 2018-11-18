@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.inspired.restaurant.constant.TableLocationEnu;
 import com.inspired.restaurant.dao.ReservationDao;
 import com.inspired.restaurant.dao.TableDao;
+import com.inspired.restaurant.dao.filter.DateFilter;
+import com.inspired.restaurant.dao.filter.ReservationFilter;
 import com.inspired.restaurant.dto.Reservation;
 import com.inspired.restaurant.dto.Table;
 
@@ -78,7 +80,9 @@ public class ReservationManagerImpl implements ReservationManager {
 	to.setTime(time);
 	to.add(Calendar.MINUTE, 90);
 
-	final List<Reservation> reservations = reservationDao.loadReservations(from.getTime(), to.getTime());
+	final ReservationFilter filter = new ReservationFilter();
+	filter.setTime(new DateFilter(from.getTime(), to.getTime()));
+	final List<Reservation> reservations = reservationDao.listReservations(filter);
 
 	final Set<Table> occupiedTables = new HashSet<Table>();
 	for (Reservation reservation : reservations) {
