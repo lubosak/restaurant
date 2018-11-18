@@ -128,4 +128,16 @@ public class ReservationManagerImpl implements ReservationManager {
 	return timeSlot;
     }
 
+    @Override
+    public Reservation retrieveReservation(String name, Date time) {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public void cancelReservation(String name, Date time) {
+	// TODO Auto-generated method stub
+
+    }
+
 }

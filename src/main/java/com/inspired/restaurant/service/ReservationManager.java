@@ -12,4 +12,8 @@ public interface ReservationManager {
 
     public Reservation createReservation(String name, int partySize, Date time, TableLocationEnu tablePref);
 
+    public Reservation retrieveReservation(String name, Date time);
+
+    public void cancelReservation(String name, Date time);
+
 }
